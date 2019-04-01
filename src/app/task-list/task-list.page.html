@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Tasks</ion-title>
+    <ion-button slot="end" (click)= "addItem()">
+      <ion-icon slot="end" name="add"></ion-icon>
+     Add Item
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item-sliding *ngFor="let task of tasks" #slidingItem>
+        <ion-item [ngClass]="{taskDone: task.status == 'done'}">
+            {{ task.title }}
+        </ion-item>
+        <ion-item-options side="end" (ionSwipe)="removeTask(slideingItem, task)">
+          <ion-button (click)="markAsDone(slidingItem,task)" color="secondary">
+            <ion-icon name="checkmark"></ion-icon>
+          </ion-button>
+          <ion-item-option (click)="removeTask(slidingItem,task)" color="danger" expandable>
+            <ion-button (click)="removeTask(slidingItem,task)" color="danger">
+              <ion-icon name="trash" id="delete"></ion-icon>
+            </ion-button>
+          </ion-item-option>
+          
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+</ion-content>
